@@ -26,3 +26,4 @@ def check_prime(number: int):
         return {"number": number, "is_prime": False}
 
 # Comment for changes
+# Comment for another change
