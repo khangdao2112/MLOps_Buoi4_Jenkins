@@ -3,6 +3,10 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "hello_world"}
+
 # Route để lấy phiên bản
 @app.get("/get_version")
 def get_version():

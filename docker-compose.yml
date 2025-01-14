@@ -1,0 +1,24 @@
+services:
+  jenkins:
+    image: jenkins-with-python
+    container_name: jenkins
+    ports:
+      - "8080:8080"  # Expose Jenkins on localhost:8080
+      - "8000:8000"  # Expose application
+      - "50000:50000"  # For connecting Jenkins agents
+    volumes:
+      - jenkins_home:/var/jenkins_home  # Persistent data storage
+      - C:/Users/Khang/Documents/MLOps/Jenkins-venv:/var/Jenkins-venv
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    restart: unless-stopped
+    networks:
+      - jenkins
+
+volumes:
+  jenkins_home:
+    driver: local
+
+networks:
+  jenkins:
+    external: true
