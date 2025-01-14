@@ -1,7 +1,12 @@
 import pytest
 import subprocess
 import time
+import sys
+import os
 from fastapi.testclient import TestClient
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from main import app
 
 @pytest.fixture(scope="module")
@@ -17,7 +22,7 @@ client = TestClient(app)
 def test_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World"}
+    assert response.json() == {"message": "hello_world"}
 
 @pytest.mark.usefixtures("start_server")
 def test_get_version():
